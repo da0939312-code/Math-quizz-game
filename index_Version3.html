@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Let's Play — Game Matematika</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Start Screen -->
+  <main id="start-screen" class="center-screen">
+    <h1 class="title">LET'S PLAY</h1>
+
+    <div class="start-controls">
+      <div class="difficulty-group">
+        <label class="label-title">Pilih Tingkat Kesulitan</label>
+        <div class="difficulty-options">
+          <label><input type="radio" name="difficulty" value="mixed" checked /> Mixed</label>
+          <label><input type="radio" name="difficulty" value="easy" /> Easy</label>
+          <label><input type="radio" name="difficulty" value="medium" /> Medium</label>
+          <label><input type="radio" name="difficulty" value="hard" /> Hard</label>
+        </div>
+      </div>
+
+      <div class="options-row">
+        <label class="sound-toggle"><input type="checkbox" id="sound-toggle" checked /> Suara</label>
+        <div class="highscore-display">Skor Tertinggi: <strong id="highscore-display">-</strong></div>
+      </div>
+
+      <div class="start-actions">
+        <button id="start-btn" class="start-btn">START</button>
+      </div>
+
+      <div class="extra-panels">
+        <section class="panel history-panel">
+          <h3>Riwayat (Terakhir)</h3>
+          <ul id="history-list" class="history-list"></ul>
+          <button id="clear-history" class="link-btn">Bersihkan Riwayat</button>
+        </section>
+
+        <section class="panel leaderboard-panel">
+          <h3>Leaderboard (Top 5)</h3>
+          <div class="leaderboard-tabs">
+            <button class="lb-tab active" data-diff="mixed">Mixed</button>
+            <button class="lb-tab" data-diff="easy">Easy</button>
+            <button class="lb-tab" data-diff="medium">Medium</button>
+            <button class="lb-tab" data-diff="hard">Hard</button>
+          </div>
+          <ol id="leaderboard-list" class="leaderboard-list"></ol>
+          <button id="clear-leaderboard" class="link-btn">Bersihkan Leaderboard</button>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <!-- Game Screen -->
+  <main id="game-screen" class="hidden">
+    <header class="game-header">
+      <div class="score">Skor: <span id="score">0</span></div>
+      <div class="timer">Waktu: <span id="timer">00:00</span></div>
+    </header>
+
+    <section class="game-content">
+      <div id="question-card" class="question-card">
+        <div class="meta-row">
+          <div id="question-number" class="question-number"></div>
+          <div id="question-diff" class="question-diff"></div>
+        </div>
+        <div id="question" class="question">Pertanyaan muncul di sini</div>
+        <div id="explanation" class="explanation hidden"></div>
+      </div>
+
+      <div class="cards-grid" id="choices">
+        <!-- Choice buttons akan diinject di sini -->
+      </div>
+    </section>
+
+    <footer class="game-footer">
+      <div id="progress" class="progress">Soal <span id="current">0</span> / <span id="total">0</span></div>
+    </footer>
+  </main>
+
+  <!-- End Screen -->
+  <main id="end-screen" class="hidden center-screen">
+    <h2>Permainan Selesai!</h2>
+    <p class="final-score">Skor akhir: <span id="final-score">0</span></p>
+    <p id="final-message" class="final-message"></p>
+    <p class="best-score">Skor tertinggi untuk tingkat <span id="end-diff">-</span>: <strong id="best-score">-</strong></p>
+
+    <section class="end-leaderboard">
+      <h3>Leaderboard (Top 5 - <span id="end-diff-2">-</span>)</h3>
+      <ol id="end-leaderboard-list" class="leaderboard-list"></ol>
+    </section>
+
+    <div class="end-buttons">
+      <button id="restart-btn" class="start-btn">Main Lagi</button>
+    </div>
+  </main>
+
+  <!-- Modal input nama untuk leaderboard -->
+  <div id="name-modal" class="modal hidden">
+    <div class="modal-content">
+      <h3>Masukkan Nama Anda</h3>
+      <p>Anda masuk Top 5 untuk tingkat <span id="modal-diff">-</span>. Masukkan nama (1–12 karakter):</p>
+      <input id="player-name" type="text" maxlength="12" placeholder="Nama singkat" />
+      <div class="modal-actions">
+        <button id="save-name-btn" class="start-btn">Simpan</button>
+        <button id="skip-name-btn" class="link-btn">Lewati</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notifikasi singkat -->
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
